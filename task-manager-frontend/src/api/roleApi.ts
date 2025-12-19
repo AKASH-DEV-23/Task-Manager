@@ -11,32 +11,32 @@ interface GetRolesParams {
 
 export const roleApi = {
   getRoles: async (params?: GetRolesParams): Promise<RoleListResponse> => {
-    const response = await axiosInstance.get<RoleListResponse>('/api/role', { params });
+    const response = await axiosInstance.get<RoleListResponse>('/role', { params });
     return response.data;
   },
 
   getAllRoles: async (): Promise<{ success: boolean; data: Role[] }> => {
-    const response = await axiosInstance.get('/api/role/all');
+    const response = await axiosInstance.get('/role/all');
     return response.data;
   },
 
   getRoleById: async (id: string): Promise<RoleResponse> => {
-    const response = await axiosInstance.get<RoleResponse>(`/api/role/${id}`);
+    const response = await axiosInstance.get<RoleResponse>(`/role/${id}`);
     return response.data;
   },
 
   createRole: async (data: { name: string; description: string; permissions: number[] }): Promise<RoleResponse> => {
-    const response = await axiosInstance.post<RoleResponse>('/api/role', data);
+    const response = await axiosInstance.post<RoleResponse>('/role', data);
     return response.data;
   },
 
   updateRole: async (id: string, data: { name?: string; description?: string; permissions?: number[] }): Promise<RoleResponse> => {
-    const response = await axiosInstance.put<RoleResponse>(`/api/role/${id}`, data); 
+    const response = await axiosInstance.put<RoleResponse>(`/role/${id}`, data); 
     return response.data;
   },
 
   deleteRole: async (id: string): Promise<{ success: boolean; message: string }> => {
-    const response = await axiosInstance.delete(`/api/role/${id}`); 
+    const response = await axiosInstance.delete(`/role/${id}`); 
     return response.data;
   },
 };

@@ -56,37 +56,37 @@ export const taskApi = {
     if (filters?.status) params.status = filters.status;
     if (filters?.priority) params.priority = filters.priority;
  
-    const response = await axiosInstance.get<TaskListResponse>('/api/tasks', { params });
+    const response = await axiosInstance.get<TaskListResponse>('/tasks', { params });
     return response.data.data;
   },
  
   // Get single task by ID
   getTaskById: async (id: string): Promise<Task> => {
-    const response = await axiosInstance.get<TaskResponse>(`/api/tasks/${id}`);
+    const response = await axiosInstance.get<TaskResponse>(`/tasks/${id}`);
     return response.data.data;
   },
  
   // Create new task
   createTask: async (task: CreateTaskDTO): Promise<Task> => {
-    const response = await axiosInstance.post<TaskResponse>('/api/tasks', task);
+    const response = await axiosInstance.post<TaskResponse>('/tasks', task);
     return response.data.data;
   },
  
   // Update task
   updateTask: async (id: string, updates: Partial<UpdateTaskDTO>): Promise<Task> => {
-    const response = await axiosInstance.put<TaskResponse>(`/api/tasks/${id}`, updates);
+    const response = await axiosInstance.put<TaskResponse>(`/tasks/${id}`, updates);
     return response.data.data;
   },
  
   // Delete task
   deleteTask: async (id: string): Promise<void> => {
-    await axiosInstance.delete(`/api/tasks/${id}`);
+    await axiosInstance.delete(`/tasks/${id}`);
   },
  
   // Bulk update task status (for drag and drop)
   bulkUpdateStatus: async (updates: Array<{ id: string; status: string }>): Promise<Task[]> => {
     const response = await axiosInstance.post<TaskListResponse>(
-      '/api/tasks/bulk-update',
+      '/tasks/bulk-update',
       { updates }
     );
     return response.data.data;
@@ -94,7 +94,7 @@ export const taskApi = {
  
   // Get users for task assignment (paginated, only available users)
   getUsersForAssignment: async (params?: GetUsersForAssignmentParams): Promise<TaskUser[]> => {
-    const response = await axiosInstance.get<UserListResponse>('/api/tasks/users', { params });
+    const response = await axiosInstance.get<UserListResponse>('/tasks/users', { params });
     return response.data.data;
   },
 };

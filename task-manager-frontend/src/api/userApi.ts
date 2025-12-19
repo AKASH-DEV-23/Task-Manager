@@ -10,12 +10,12 @@ interface GetUsersParams {
 
 export const userApi = {
   getUsers: async (params?: GetUsersParams): Promise<UserListResponse> => {
-    const response = await axiosInstance.get<UserListResponse>('/api/user', { params });
+    const response = await axiosInstance.get<UserListResponse>('/user', { params });
     return response.data;
   },
 
   getUserById: async (id: string): Promise<UserResponse> => {
-    const response = await axiosInstance.get<UserResponse>(`/api/user/${id}`); // ✅ FIXED
+    const response = await axiosInstance.get<UserResponse>(`/user/${id}`); // ✅ FIXED
     return response.data;
   },
 
@@ -27,17 +27,17 @@ export const userApi = {
     role?: string | null;
     picture?: string;
   }): Promise<UserResponse> => {
-    const response = await axiosInstance.post<UserResponse>('/api/user', data);
+    const response = await axiosInstance.post<UserResponse>('/user', data);
     return response.data;
   },
 
   updateUser: async (id: string, data: Partial<User>): Promise<UserResponse> => {
-    const response = await axiosInstance.put<UserResponse>(`/api/user/${id}`, data); // ✅ FIXED
+    const response = await axiosInstance.put<UserResponse>(`/user/${id}`, data); // ✅ FIXED
     return response.data;
   },
 
   deleteUser: async (id: string): Promise<{ success: boolean; message: string }> => {
-    const response = await axiosInstance.delete(`/api/user/${id}`); // ✅ FIXED
+    const response = await axiosInstance.delete(`/user/${id}`); // ✅ FIXED
     return response.data;
   },
 };
